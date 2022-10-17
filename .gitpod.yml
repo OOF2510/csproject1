@@ -1,0 +1,14 @@
+image:
+  file: .gitpod.dockerfile
+tasks:
+  - command: bash /workspace/csproject1/onstartup.sh
+ports:
+  - port: 6080
+    visibility: private
+    onOpen: open-browser
+  - port: 5900
+    visibility: private
+    onOpen: ignore
+  - port: 6463
+    visibility: private
+    onOpen: ignore
