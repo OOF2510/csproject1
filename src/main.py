@@ -52,23 +52,26 @@ win = Tk()
 win.title("Autoclicker")
 win.geometry('600x200')
 
-frame = ttk.Frame(win, padding=0)
-frame.grid()
+label = ttk.Label(win, text="Seconds in between clicks:")
+label.place(x=20,y=10,width=190,height=25)
 
-ttk.Label(frame, text="Autoclicker").grid(column=0, row=0)
-
-ttk.Label(frame, text="Seconds in between clicks").grid(column=2, row=0)
 time_choice = StringVar(win)
 time_choice.set(seconds[1])
 time_dropdown = ttk.OptionMenu(win, time_choice, *seconds)
-time_dropdown.grid(column=2, row=1)
+time_dropdown.place(x=230,y=10,width=70,height=25)
+
+label = ttk.Label(win, text="Mouse button to click:")
+label.place(x=20,y=40,width=190,height=25)
 
 mb_choice = StringVar(win)
 mb_choice.set(mouse_buttons[1])
 mb_dropdown = ttk.OptionMenu(win, mb_choice, *mouse_buttons)
-mb_dropdown.grid(column=2, row=2)
+mb_dropdown.place(x=230,y=40,width=130,height=25)
 
-ttk.Button(frame, text="Start", command=lambda: autoclick(time_choice.get(), mb_choice.get())).grid(column=1, row=3)
-ttk.Button(frame, text="Quit", command=win.destroy).grid(column=1, row=4)
+start_button = ttk.Button(win, text="Start", command=lambda: autoclick(time_choice.get(), mb_choice.get()))
+start_button.place(x=200,y=170,width=70,height=25)
+
+quit_button = ttk.Button(win, text="Quit", command=win.destroy)
+quit_button.place(x=300,y=170,width=70,height=25)
 
 win.mainloop()
