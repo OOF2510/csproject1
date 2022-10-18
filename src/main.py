@@ -39,7 +39,6 @@ def on_release(key):
 listener = keyboard.Listener(on_release=on_release)
 listener.start()
 
-running = False # init running as False
 # autoclicker function
 def autoclick(sec, mb):
     mb = buttonmap[mb] # get the actual button from user selection
@@ -58,6 +57,7 @@ def autoclick(sec, mb):
             running = False
         else:
             wait(sec)
+    print("Stopped")
 
 # initialize window using tkinter
 win = Tk()
