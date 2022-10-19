@@ -1,6 +1,7 @@
 """
 Author: Nathan Turner
-Created: 10/18/22
+Created: 10/17/22
+Last Updated: 10/19/22
 Version: 1.0.2
 """
 
