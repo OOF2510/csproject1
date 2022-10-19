@@ -83,7 +83,7 @@ mb_dropdown = ttk.OptionMenu(win, mb_choice, *mouse_buttons)
 mb_dropdown.place(x=230,y=40,width=130,height=25)
 
 # wrapper function for autoclick since tk callback doesnt allow passing paramaters
-def autoclick_wrapper:
+def autoclick_wrapper():
   autoclick(time_choice.get(), mb_choparamaters # run autoclick function, passing user selected options as params
 # create start button which runs the autoclick_wrapper function
 start_button = ttk.Button(win, text="Start", command=autoclick_wrapper)
