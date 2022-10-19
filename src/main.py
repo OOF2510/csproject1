@@ -1,6 +1,6 @@
 """
 Author: Nathan Turner
-Created: 10/17/22
+Created: 10/18/22
 Last Updated: 10/19/22
 Version: 1.0.2
 """
@@ -46,9 +46,10 @@ def autoclick(sec, mb):
     sec = int(sec) # make sec a int
     global running
     global endkey_pressed
+    mouse_control.move(0, -30) # this somehow fixed the function running multiple times???
     running = True
     endkey_pressed = False
-    print(f"Autoclicker started, press the 'esc' key twice to end") # instructions to end
+    print(f"Autoclicker started, press the 'esc' key to end") # instructions to end
     while running: # repeat while running is True
         # press then release mouse button
         mouse_control.press(mb)
