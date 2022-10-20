@@ -11,5 +11,5 @@ Exec=python3 /workspace/csproject1/src/main.py
 Icon=application-x-executable
 Path=
 Terminal=true
-StartupNotify=false" >> /home/gitpod/Desktop/AutoClicker.desktop
+StartupNotify=false" > /home/gitpod/Desktop/AutoClicker.desktop
 chmod +x /home/gitpod/Desktop/AutoClicker.desktop
