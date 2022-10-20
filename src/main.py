@@ -65,8 +65,9 @@ def autoclick(sec, mb):
 win = Tk()
 win.title("Autoclicker")
 win.geometry('600x200')
+win.config(bg="#36454F")
 
-label = ttk.Label(win, text="Seconds in between clicks:")
+label = ttk.Label(win, text="Seconds in between clicks:", background='#36454F', foreground='#FFFFFF')
 label.place(x=20,y=10,width=190,height=25)
 
 # create dropdown menu from the seconds list
@@ -75,7 +76,7 @@ time_choice.set(seconds[1])
 time_dropdown = ttk.OptionMenu(win, time_choice, *seconds)
 time_dropdown.place(x=230,y=10,width=70,height=25)
 
-label = ttk.Label(win, text="Mouse button to click:")
+label = ttk.Label(win, text="Mouse button to click:", background='#36454F', foreground='#FFFFFF')
 label.place(x=20,y=40,width=190,height=25)
 
 # create dropdown menu from the mouse_buttons list
