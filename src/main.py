@@ -17,12 +17,14 @@ mouse_control = Controller()
 
 # function to add a range of numbers to a list
 def add_range(list, amount):
-    for i in range(amount):
-        list.append(i)
+    amount = (amount * 10) + 1
+    # add numbers to list, starting at 0 and ending at amount, with a step of .1
+    for i in range(0, amount, 1):
+        list.append(i/10)
 
-# create seconds list and add seconds 0-25 to it
+# create seconds list and add seconds to it
 seconds = []
-add_range(seconds, 26)
+add_range(seconds, 2)
 mouse_buttons = ["Left Click", "Left Click", "Middle Click", "Right Click"] # list of options for the mouse button dropdown
 # map options to thier respective buttons
 buttonmap = {
@@ -43,36 +45,37 @@ listener.start()
 # autoclicker function
 def autoclick(sec, mb):
     mb = buttonmap[mb] # get the actual button from user selection
-    sec = int(sec) # make sec a int
-    global running
-    global endkey_pressed
-    mouse_control.move(0, -30) # this somehow fixed the function running multiple times???
-    running = True
-    endkey_pressed = False
+    sec = float(sec) # convert sec to float
+    start_button.config(state="disabled") # disable start button
+    mouse_control.move(0, -30) # move mouse to prevent from clicking on start button
+    global running # make running a global variable
+    global endkey_pressed # make endkey_pressed a global variable
+    running = True # set running to True
+    endkey_pressed = False # set endkey_pressed to False
     print(f"Autoclicker started, press the 'esc' key to end") # instructions to end
     while running: # repeat while running is True
         # press then release mouse button
         mouse_control.press(mb)
         mouse_control.release(mb)
-        # if endkey has been pressed, set running to false, else, wait user specified amount of seconds
-        if endkey_pressed == True:   
-            running = False
-        else:
-            wait(sec)
-    print("Stopped")
+        if endkey_pressed == True: # if endkey has been pressed
+            running = False # set running to False
+            start_button.config(state="normal") # enable start button
+        else: # if endkey has not been pressed
+            wait(sec) # wait for sec seconds
+    print("Stopped") # print stopped when autoclicker is stopped
 
 # initialize window using tkinter
 win = Tk()
 win.title("Autoclicker")
 win.geometry('600x200')
-win.config(bg="#36454F")
+win.config(bg="#36454F") # set window background color
 
 label = ttk.Label(win, text="Seconds in between clicks:", background='#36454F', foreground='#FFFFFF')
 label.place(x=20,y=10,width=190,height=25)
 
 # create dropdown menu from the seconds list
 time_choice = StringVar(win)
-time_choice.set(seconds[1])
+time_choice.set(seconds[1]) # set default value to 0.1
 time_dropdown = ttk.OptionMenu(win, time_choice, *seconds)
 time_dropdown.place(x=230,y=10,width=70,height=25)
 
@@ -81,7 +84,7 @@ label.place(x=20,y=40,width=190,height=25)
 
 # create dropdown menu from the mouse_buttons list
 mb_choice = StringVar(win)
-mb_choice.set(mouse_buttons[1])
+mb_choice.set(mouse_buttons[1]) # set default value to Left Click
 mb_dropdown = ttk.OptionMenu(win, mb_choice, *mouse_buttons)
 mb_dropdown.place(x=230,y=40,width=130,height=25)
 
