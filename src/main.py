@@ -42,8 +42,7 @@ def on_release(key):
 listener = keyboard.Listener(on_release=on_release)
 listener.start()
 
-run = 0 # set run to 0
-
+run = 0 # initalize run as 0
 # autoclicker function
 def autoclick(sec, mb):
     global run
