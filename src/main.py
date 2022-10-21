@@ -42,12 +42,17 @@ def on_release(key):
 listener = keyboard.Listener(on_release=on_release)
 listener.start()
 
+run = 0 # set run to 0
+
 # autoclicker function
 def autoclick(sec, mb):
+    global run
+    if run > 0: # if run is greater than 0
+        return # stop execution of function 
+    run += 1
     mb = buttonmap[mb] # get the actual button from user selection
     sec = float(sec) # convert sec to float
-    start_button.config(state="disabled") # disable start button
-    mouse_control.move(0, -30) # move mouse to prevent from clicking on start button
+    # start_button.config(state="disabled") # disable start button, this doesn't work for some reason, hence the run variable
     global running # make running a global variable
     global endkey_pressed # make endkey_pressed a global variable
     running = True # set running to True
@@ -63,6 +68,16 @@ def autoclick(sec, mb):
         else: # if endkey has not been pressed
             wait(sec) # wait for sec seconds
     print("Stopped") # print stopped when autoclicker is stopped
+
+# set runs to 0 .2 seconds after the autoclicker is stopped
+# this is the only way I could stop the autoclicker from running multiple times at once
+def reset_run():
+    global run
+    wait(.2)
+    run = 0
+while run > 0:
+    if running == False: # while run is greater than 0 and running is False
+        reset_run()
 
 # initialize window using tkinter
 win = Tk()
@@ -89,7 +104,7 @@ mb_dropdown = ttk.OptionMenu(win, mb_choice, *mouse_buttons)
 mb_dropdown.place(x=230,y=40,width=130,height=25)
 
 # create start button which runs the autoclick function, passing user selections from dropdowns as paramaters
-start_button = ttk.Button(win, text="Start", command=lambda: autoclick(time_choice.get(), mb_choice.get()))
+start_button = ttk.Button(win, text="Start", command=lambda: autoclick(time_choice.get(), mb_choice.get())) 
 start_button.place(x=200,y=170,width=70,height=25)
 
 # create quit button
