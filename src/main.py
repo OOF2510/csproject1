@@ -63,7 +63,7 @@ def autoclick(sec, mb):
         mouse_control.release(mb)
         if endkey_pressed == True: # if endkey has been pressed
             running = False # set running to False
-            start_button.config(state="normal") # enable start button
+            # start_button.config(state="normal") # enable start button
         else: # if endkey has not been pressed
             wait(sec) # wait for sec seconds
     print("Stopped") # print stopped when autoclicker is stopped
