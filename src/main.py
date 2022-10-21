@@ -69,7 +69,7 @@ def autoclick(sec, mb):
             wait(sec) # wait for sec seconds
     print("Stopped") # print stopped when autoclicker is stopped
 
-# set runs to 0 .2 seconds after the autoclicker is stopped
+# reset .2 seconds after the autoclicker is stopped
 # this is the only way I could stop the autoclicker from running multiple times at once
 def reset_run():
     global run
