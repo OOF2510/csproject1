@@ -51,7 +51,6 @@ def autoclick(sec, mb):
     run += 1
     mb = buttonmap[mb] # get the actual button from user selection
     sec = float(sec) # convert sec to float
-    # start_button.config(state="disabled") # disable start button, this doesn't work for some reason, hence the run variable
     global running # make running a global variable
     global endkey_pressed # make endkey_pressed a global variable
     running = True # set running to True
@@ -63,20 +62,19 @@ def autoclick(sec, mb):
         mouse_control.release(mb)
         if endkey_pressed == True: # if endkey has been pressed
             running = False # set running to False
-            # start_button.config(state="normal") # enable start button
+            start_button.config(state="disabled") # disable start button
+            start_button.config(state="normal") # enable start button
+            # doing this because its the only way i can get the reset_run function to work
         else: # if endkey has not been pressed
             wait(sec) # wait for sec seconds
     print("Stopped") # print stopped when autoclicker is stopped
 
 # reset run .2 seconds after the autoclicker is stopped
 # this is the only way I could stop the autoclicker from running multiple times at once
-def reset_run():
+def reset_run(*args): # *args doesnt actually do anything, but it's required for the after function
     global run
     wait(.2)
     run = 0
-while run > 0:
-    if running == False: # while run is greater than 0 and running is False
-        reset_run()
 
 # initialize window using tkinter
 win = Tk()
@@ -105,6 +103,8 @@ mb_dropdown.place(x=230,y=40,width=130,height=25)
 # create start button which runs the autoclick function, passing user selections from dropdowns as paramaters
 start_button = ttk.Button(win, text="Start", command=lambda: autoclick(time_choice.get(), mb_choice.get())) 
 start_button.place(x=200,y=170,width=70,height=25)
+start_button.bind("<Activate>", reset_run) # run reset_run() when start button is released
+# please work im going insane
 
 # create quit button
 quit_button = ttk.Button(win, text="Quit", command=win.destroy)
