@@ -39,11 +39,14 @@ def on_release(key):
     if key == keyboard.Key.esc:
         global endkey_pressed
         endkey_pressed = True
-        # reset run .7 seconds after autoclicker stops, this is the only way i could stop the autoclicker from running multiple times at once
+        # reset run 2.1 seconds after autoclicker stops, this is the only way i could stop the autoclicker from running multiple times at once
         global run
-        wait(.7)
-        run = 0
-        print('You may start the autoclicker again now')
+        if run > 0:
+            wait(2.1)
+            run = 0
+            print('You may start the autoclicker again now')
+        else:
+            pass
         # please god work... LETSGOOOOOOO IT WORKED
 listener = keyboard.Listener(on_release=on_release)
 listener.start()
