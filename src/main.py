@@ -2,7 +2,7 @@
 Author: Nathan Turner
 Created: 10/18/22
 Last Updated: 10/26/22
-Version: 1.0.4
+Version: 1.0.5
 """
 
 # imports
