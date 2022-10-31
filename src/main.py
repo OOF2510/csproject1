@@ -90,8 +90,8 @@ time_choice.set(seconds[1]) # set default value to 0.1
 time_dropdown = ttk.OptionMenu(win, time_choice, *seconds)
 time_dropdown.place(x=230,y=10,width=70,height=25)
 
-label = ttk.Label(win, text="Mouse button to click:", background='#36454F', foreground='#FFFFFF')
-label.place(x=20,y=40,width=190,height=25)
+label_b = ttk.Label(win, text="Mouse button to click:", background='#36454F', foreground='#FFFFFF')
+label_b.place(x=20,y=40,width=190,height=25)
 
 # create dropdown menu from the mouse_buttons list
 mb_choice = StringVar(win)
